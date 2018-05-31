@@ -1,0 +1,107 @@
+<html>
+<head>
+<title>Outsider</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+
+var releaseDate = new Date("May 31, 2018 15:10:25").getTime();
+
+
+var ct = setInterval(function() {
+  // method to be executed;
+	var currDate = new Date().getTime();
+	var timeDiff = releaseDate - currDate;
+     
+    var s = Math.floor((timeDiff/1000));
+	var d = Math.floor((((timeDiff/1000)/60)/60)/24);
+	var m = Math.floor((((timeDiff/1000)/60)));
+	var h = Math.floor((((timeDiff/1000)/60)/60));
+
+	document.getElementById("countDown").innerHTML = d + "d\t" + h + "h\t" + m + "m\t" + s + "s";
+
+	if (releaseDateReached(timeDiff)) {
+	    clearInterval(ct);
+	    document.getElementById("countDown").innerHTML = "<iframe id='outSvid'  width='600px' height='300px'src='https://www.youtube.com/embed/aPs76zFJauo?autoplay=1'> </iframe>";
+	}
+
+
+}, 1000);
+
+function releaseDateReached(time){
+
+	if(time<0)
+		return true;
+	else
+		return false;
+}
+
+
+
+</script>
+
+<style>
+
+	@font-face {
+	    font-family: adPro;
+	    src: url(AdPro.ttf);
+	}
+
+
+	body{
+
+		background-color: #000;
+	}
+
+	#timer{
+
+	  position: fixed;
+	  max-width: 100%;
+	  top: 50%;
+	  left: 50%;
+	  /* bring your own prefixes */
+	  transform: translate(-50%, -50%);
+
+	}
+
+	#countDown{
+
+		font-size: calc(300px - 30vmin);
+		font-family: 'adPro';
+		color: white;
+
+
+	}
+
+	#outSvid{
+
+		border: none;
+		margin-top: 40%;
+	  	display: block;
+	  	margin-right: auto;
+	  	margin-left: auto;
+
+	}
+
+	#lg{
+
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		max-width:100%;
+		max-height:100%;
+	}
+
+</style>
+</head>
+
+<body>
+
+	<img id='lg'src='outsiderLg.png'>
+	<div id="timer">
+		<p id="countDown"> </p>
+	</div>
+
+</body>
+
+</html>
